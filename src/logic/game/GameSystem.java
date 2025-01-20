@@ -82,11 +82,32 @@ public class GameSystem {
 	}
 	
 	public void removeDeadPieces(ArrayList<BaseUnit> allPieces) {
-		for(int j = allPieces.size()-1;j >= 0;j--) {
-			if(allPieces.get(j).getHp() <= 0) {
-				allPieces.remove(j);
-			}
-		}
+	    for (int j = allPieces.size() - 1; j >= 0; j--) {
+	        if (allPieces.get(j).getHp() <= 0) {
+	            allPieces.remove(j);
+	        }
+	    }
+	}
+		
+		
+	public BaseUnit promote(BaseUnit baseUnit , int choice) {
+		
+		BaseUnit promotedUnit = null;
+	    switch (choice) {
+	        case 0: // Promote to MeleeUnit
+	            promotedUnit = new MeleeUnit(baseUnit.getColumn(), baseUnit.getRow(), baseUnit.isWhite(), baseUnit.getName());
+	            break;
+	        case 1: // Promote to RangeUnit
+	            promotedUnit = new RangeUnit(baseUnit.getColumn(), baseUnit.getRow(), baseUnit.isWhite(), baseUnit.getName());
+	            break;
+	        case 2: // Promote to FlyingUnit
+	            promotedUnit = new FlyingUnit(baseUnit.getColumn(), baseUnit.getRow(), baseUnit.isWhite(), baseUnit.getName());
+	            break;
+	        default:
+	            System.out.println("Invalid promotion choice.");
+	    }
+	    return promotedUnit;
+	
 		
 	}
 
